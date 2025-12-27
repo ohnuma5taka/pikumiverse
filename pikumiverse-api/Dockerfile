@@ -1,0 +1,38 @@
+FROM python:3.12-slim-bookworm
+WORKDIR /app
+
+ENV PYTHONPATH=/app
+ENV TZ=Asia/Tokyo
+
+# tzdata をインストールしてタイムゾーンを設定
+RUN apt-get update && apt-get install -y tzdata && \
+    ln -snf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+    echo "Asia/Tokyo" > /etc/timezone
+
+# 時刻同期用
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ntpsec-ntpdate \
+ && rm -rf /var/lib/apt/lists/*
+
+COPY . .
+
+ARG APP_MODE
+COPY .env.${APP_MODE} .env
+COPY .env.db .env.db
+
+ARG APP_VERSION
+RUN cp .env .env.tmp && \
+    sed -i "s/__APP_VERSION__/${APP_VERSION}/g" .env && \
+    rm .env.tmp
+
+RUN pip install -U pip
+RUN pip install -r requirements.txt
+
+ENV APP_MODE=${APP_MODE}
+ENTRYPOINT ["/bin/sh", "-c", "\
+if [ \"$APP_MODE\" = 'dev' ]; then \
+  exec python main.py; \
+else \
+  exec uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4 --access-log; \
+fi"]
+

@@ -1,0 +1,7 @@
+@use "flex";
+
+.confirm-dialog {
+  padding: 24px 24px !important;
+  @extend .d-flex-column;
+  @extend .align-center;
+}

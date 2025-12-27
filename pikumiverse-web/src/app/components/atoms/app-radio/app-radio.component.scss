@@ -1,0 +1,8 @@
+@use 'color';
+
+$radio-button-height: 18px;
+[nz-radio] {
+  height: $radio-button-height;
+  line-height: $radio-button-height;
+  color: color.$text-medium-color;
+}

@@ -1,0 +1,68 @@
+services:
+  pikumiverse-web:
+    platform: linux/arm64
+    build:
+      context: ./pikumiverse-web
+    image: pikumiverse-web
+    container_name: pikumiverse-web
+    env_file:
+      - ./pikumiverse-web/.env
+    ports:
+      - "80:80"
+    tty: true
+    networks:
+      - pikumiverse-network
+
+  pikumiverse-api:
+    platform: linux/arm64
+    build:
+      context: ./pikumiverse-api
+      args:
+        APP_MODE: prod
+        APP_VERSION: 1.0.0
+    image: pikumiverse-api
+    container_name: pikumiverse-api
+    env_file:
+      - ./pikumiverse-api/.env
+    ports:
+      - "8000:8000"
+    networks:
+      - pikumiverse-network
+
+  pikumiverse-redis:
+    platform: linux/arm64
+    build:
+      context: ./pikumiverse-redis
+    image: pikumiverse-redis
+    container_name: pikumiverse-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - pikumiverse-network
+
+  pikumiverse-mqtt:
+    platform: linux/arm64
+    build:
+      context: ./pikumiverse-mqtt
+    image: pikumiverse-mqtt
+    container_name: pikumiverse-mqtt
+    ports:
+      - "1883:1883"
+      - "8883:8883"
+    networks:
+      - pikumiverse-network
+
+  pikumiverse-db:
+    platform: linux/arm64
+    image: postgres:15-alpine
+    container_name: pikumiverse-db
+    env_file:
+      - ./pikumiverse-api/.env.db
+    ports:
+      - "5432:5432"
+    networks:
+      - pikumiverse-network
+
+networks:
+  pikumiverse-network:
+    driver: bridge

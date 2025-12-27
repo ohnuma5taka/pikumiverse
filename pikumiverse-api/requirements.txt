@@ -1,0 +1,14 @@
+fastapi[standard]~=0.115
+sqlmodel~=0.0.23
+pydantic~=2.10.6
+pydantic-settings~=2.8.0
+beautifulsoup4~=4.13.3
+psycopg2-binary==2.9.10
+requests==2.32.3
+types-requests==2.32.4.20250913
+respx~=0.22
+redis[hiredis]~=5.2
+broadcaster[redis]~=0.3
+asyncio-redis~=0.16
+asyncio-redis~=0.16.0
+paho-mqtt~=2.1.0
