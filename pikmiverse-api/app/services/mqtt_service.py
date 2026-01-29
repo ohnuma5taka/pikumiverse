@@ -11,7 +11,7 @@ from app.utils import json_util
 
 class MqttService:
     def __init__(self):
-        self.topic = "/pikumiverse"
+        self.topic = "/pikmiverse"
         self.first_reconnect_delay = 1
         self.reconnect_rate = 2
         self.max_reconnect_count = 12

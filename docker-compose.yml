@@ -1,68 +1,68 @@
 services:
-  pikumiverse-web:
+  pikmiverse-web:
     platform: linux/arm64
     build:
-      context: ./pikumiverse-web
-    image: pikumiverse-web
-    container_name: pikumiverse-web
+      context: ./pikmiverse-web
+    image: pikmiverse-web
+    container_name: pikmiverse-web
     env_file:
-      - ./pikumiverse-web/.env
+      - ./pikmiverse-web/.env
     ports:
       - "80:80"
     tty: true
     networks:
-      - pikumiverse-network
+      - pikmiverse-network
 
-  pikumiverse-api:
+  pikmiverse-api:
     platform: linux/arm64
     build:
-      context: ./pikumiverse-api
+      context: ./pikmiverse-api
       args:
         APP_MODE: prod
         APP_VERSION: 1.0.0
-    image: pikumiverse-api
-    container_name: pikumiverse-api
+    image: pikmiverse-api
+    container_name: pikmiverse-api
     env_file:
-      - ./pikumiverse-api/.env
+      - ./pikmiverse-api/.env
     ports:
       - "8000:8000"
     networks:
-      - pikumiverse-network
+      - pikmiverse-network
 
-  pikumiverse-redis:
+  pikmiverse-redis:
     platform: linux/arm64
     build:
-      context: ./pikumiverse-redis
-    image: pikumiverse-redis
-    container_name: pikumiverse-redis
+      context: ./pikmiverse-redis
+    image: pikmiverse-redis
+    container_name: pikmiverse-redis
     ports:
       - "6379:6379"
     networks:
-      - pikumiverse-network
+      - pikmiverse-network
 
-  pikumiverse-mqtt:
+  pikmiverse-mqtt:
     platform: linux/arm64
     build:
-      context: ./pikumiverse-mqtt
-    image: pikumiverse-mqtt
-    container_name: pikumiverse-mqtt
+      context: ./pikmiverse-mqtt
+    image: pikmiverse-mqtt
+    container_name: pikmiverse-mqtt
     ports:
       - "1883:1883"
       - "8883:8883"
     networks:
-      - pikumiverse-network
+      - pikmiverse-network
 
-  pikumiverse-db:
+  pikmiverse-db:
     platform: linux/arm64
     image: postgres:15-alpine
-    container_name: pikumiverse-db
+    container_name: pikmiverse-db
     env_file:
-      - ./pikumiverse-api/.env.db
+      - ./pikmiverse-api/.env.db
     ports:
       - "5432:5432"
     networks:
-      - pikumiverse-network
+      - pikmiverse-network
 
 networks:
-  pikumiverse-network:
+  pikmiverse-network:
     driver: bridge

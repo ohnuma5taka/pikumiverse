@@ -5,7 +5,7 @@
 1. Clone repository
 
    ```bash
-   git clone git@github.ibm.com:healthcare-team/pikumiverse-api.git
+   git clone git@github.ibm.com:healthcare-team/pikmiverse-api.git
    ```
 
 2. Place `.env` file in root folder
@@ -25,7 +25,6 @@
 2. Serve
 
    Mode:
-
    - `dev`: serve on local with remote-serving API (according to proxy/proxy.dev.conf.json)
    - `local`: serve on local with local-serving API (according to proxy/proxy.local.conf.json)
    - `test`: serve on local without API
@@ -40,9 +39,9 @@
 
 ```bash
 # ネットワークが既にある場合はエラーになる
-docker network create pikumiverse-network
-docker build -t pikumiverse-web $(bash parse_env.sh) .
-docker run --name pikumiverse-web -itd --env-file .env -p 80:80 --tty pikumiverse-web
+docker network create pikmiverse-network
+docker build -t pikmiverse-web $(bash parse_env.sh) .
+docker run --name pikmiverse-web -itd --env-file .env -p 80:80 --tty pikmiverse-web
 ```
 
 ## Access

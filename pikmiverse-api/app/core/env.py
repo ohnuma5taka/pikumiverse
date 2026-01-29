@@ -11,7 +11,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Env(BaseSettings):
-    APP_NAME: str = "pikumiverse-api"
+    APP_NAME: str = "pikmiverse-api"
     APP_MODE: Literal["prod", "stg", "dev", "local", "__APP_MODE__"]
     APP_VERSION: str = "__APP_VERSION__"
     APP_LOG_PREFIX: str = "PIKUMIVERSE"
@@ -20,7 +20,7 @@ class Env(BaseSettings):
     POSTGRES_SERVER: str = "localhost"
     POSTGRES_PORT: int = 5432
     POSTGRES_DATABASE: str = "postgres"
-    POSTGRES_SCHEMA: str = "pikumiverse"
+    POSTGRES_SCHEMA: str = "pikmiverse"
     POSTGRES_USER: str = "postgres"
     POSTGRES_PASSWORD: str = "postgres"
 

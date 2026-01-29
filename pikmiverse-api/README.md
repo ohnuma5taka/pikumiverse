@@ -5,7 +5,7 @@
 1. Clone repository
 
    ```bash
-   git clone git@github.ibm.com:healthcare-team/pikumiverse-api.git
+   git clone git@github.ibm.com:healthcare-team/pikmiverse-api.git
    ```
 
 2. Place .env.local and .env.prod files in root folder
@@ -40,25 +40,25 @@ redis-server redis.conf
 
    ```bash
    # ネットワークが既にある場合はエラーになる
-   docker network create pikumiverse-network
+   docker network create pikmiverse-network
    ```
 
 2. Run DB
 
    ```bash
-   docker compose --env-file .env.db up -d pikumiverse-db
+   docker compose --env-file .env.db up -d pikmiverse-db
    ```
 
 3. Build API
 
    ```bash
-   docker build --build-arg APP_MODE=prod --build-arg APP_VERSION=1.0.0 -t pikumiverse-api .
+   docker build --build-arg APP_MODE=prod --build-arg APP_VERSION=1.0.0 -t pikmiverse-api .
    ```
 
 4. Run API
 
    ```bash
-   docker run --name pikumiverse-api -itd -p 8000:8000 --network pikumiverse-network -v "$(pwd)/app":/app/app  -v "$(pwd)/main.py":/app/main.py --tty pikumiverse-api
+   docker run --name pikmiverse-api -itd -p 8000:8000 --network pikmiverse-network -v "$(pwd)/app":/app/app  -v "$(pwd)/main.py":/app/main.py --tty pikmiverse-api
    ```
 
 ## Seed
@@ -67,7 +67,7 @@ db スキーマ作成
 
 ```bash
 # For docker
-docker exec -it pikumiverse-api python -m app.db.db
+docker exec -it pikmiverse-api python -m app.db.db
 ```
 
 データの初期化
@@ -77,5 +77,5 @@ docker exec -it pikumiverse-api python -m app.db.db
 python -m test.seeds.seed
 
 # For docker
-docker exec -it pikumiverse-api python -m test.seeds.seed
+docker exec -it pikmiverse-api python -m test.seeds.seed
 ```

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pikumiverse-web": {
+    "pikmiverse-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -133,18 +133,18 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "prod": {
-              "buildTarget": "pikumiverse-web:build:prod"
+              "buildTarget": "pikmiverse-web:build:prod"
             },
             "dev": {
-              "buildTarget": "pikumiverse-web:build:dev",
+              "buildTarget": "pikmiverse-web:build:dev",
               "proxyConfig": "proxy/proxy.dev.conf.json"
             },
             "local": {
-              "buildTarget": "pikumiverse-web:build:local",
+              "buildTarget": "pikmiverse-web:build:local",
               "proxyConfig": "proxy/proxy.local.conf.json"
             },
             "test": {
-              "buildTarget": "pikumiverse-web:build:test"
+              "buildTarget": "pikmiverse-web:build:test"
             }
           },
           "options": {
